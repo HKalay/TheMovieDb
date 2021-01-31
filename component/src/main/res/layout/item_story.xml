@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootViewItemStory"
+    android:layout_margin="@dimen/material_4dp">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/imgItemStoryPicture"
+        android:layout_width="@dimen/material_72dp"
+        android:layout_height="@dimen/material_72dp"
+        android:layout_marginBottom="@dimen/material_12dp"
+        app:civ_border_color="@color/orange"
+        tools:src="@tools:sample/avatars" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemStoryNewText"
+        style="@style/sf_pro_text_bold_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgItemStoryPicture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-8dp"
+        android:background="@drawable/custom_textview_1"
+        android:paddingLeft="@dimen/material_8dp"
+        android:paddingTop="@dimen/material_2dp"
+        android:paddingRight="@dimen/material_8dp"
+        android:paddingBottom="@dimen/material_4dp"
+        tools:text="Yeni" />
+</RelativeLayout>
