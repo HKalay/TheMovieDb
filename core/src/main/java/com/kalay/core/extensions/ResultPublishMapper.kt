@@ -10,7 +10,7 @@ import io.reactivex.subjects.PublishSubject
 fun <T> PublishSubject<T>.toLiveData(compositeDisposable:
                                      CompositeDisposable): LiveData<T> {
     val data = MutableLiveData<T>()
-    compositeDisposable.add(this.subscribe({ t: T -> data.value = t }))
+    compositeDisposable.add(this.subscribe { t: T -> data.value = t })
     return data
 }
 
