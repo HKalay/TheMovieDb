@@ -8,7 +8,7 @@ import com.kalay.core.ui.recyclerview.RecyclerViewAdapter
 @SuppressLint("WrongConstant")
 fun RecyclerView.setup(
     adapter: RecyclerViewAdapter,
-    layoutManager: LinearLayoutManager = LinearLayoutManager(this.context),
+    layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context),
     isHasFixedSize: Boolean = false
 ) {
     this.layoutManager = layoutManager

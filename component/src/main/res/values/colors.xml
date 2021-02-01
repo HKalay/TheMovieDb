@@ -3,10 +3,4 @@
     <color name="orange">#e67f19</color>
     <color name="white">#ffffff</color>
     <color name="black">#131313</color>
-    <color name="red">#FF0000</color>
-
-    <color name="gray_dark">#606060</color>
-    <color name="gray_light">#969696</color>
-
-    <color name="green_light">#207835</color>
 </resources>

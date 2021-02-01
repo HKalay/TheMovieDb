@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface IHomePageApi {
 
-    @GET("getHomePage")
-    fun getHomePage(): Single<HomePageResponse>
+    @GET("movie/upcoming")
+    fun getUpcomingMovies(): Single<HomePageResponse>
 
 }

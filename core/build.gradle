@@ -15,16 +15,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"http://delivery.dogannet.tv/api/domains/5a61af791e6bbc48583cbfbc/"'
-            buildConfigField 'String', 'THE_MOVIE_DB_KEY', '"__"'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'THE_MOVIE_DB_KEY', '"3077ceaa569064ba0c97a016d9d9f1b9"'
             buildConfigField 'String', 'DATABASE_NAME', '"themovie_db_release"'
         }
 
         debug {
             minifyEnabled false
             debuggable true
-            buildConfigField 'String', 'BASE_URL', '"http://delivery.dogannet.tv/api/domains/5a61af791e6bbc48583cbfbc/"'
-            buildConfigField 'String', 'THE_MOVIE_DB_KEY', '"__"'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'THE_MOVIE_DB_KEY', '"3077ceaa569064ba0c97a016d9d9f1b9"'
             buildConfigField 'String', 'DATABASE_NAME', '"themovie_db_debug"'
         }
     }
