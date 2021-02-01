@@ -1,5 +1,7 @@
 package com.kalay.core.extensions
 
+import androidx.lifecycle.*
+import com.kalay.core.networking.DataFetchResult
 import com.kalay.core.networking.Scheduler
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -45,4 +47,15 @@ fun Completable.performOnBack(scheduler: Scheduler): Completable {
 
 fun <T> Observable<T>.performOnBack(scheduler: Scheduler): Observable<T> {
     return this.subscribeOn(scheduler.io())
+}
+
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(lifecycleOwner,object : Observer<T> {
+        override fun onChanged(t: T?) {
+            observer.onChanged(t)
+            if(t is DataFetchResult.Success<*> || t is DataFetchResult.Failure<*>) {
+                removeObserver(this)
+            }
+        }
+    })
 }
