@@ -9,8 +9,8 @@ buildscript {
             'kotlin'            : '1.3.21',
             'minSdk'            : 21,
             'compileSdk'        : 28,
-            'targetSdk'         : 29,
-            'targetSdk'         : 29,
+            'targetSdk'         : 30,
+
 
             //android support
             'appCompat'         : '1.1.0',
