@@ -1,6 +1,7 @@
 package com.kalay.themoviedb.ui.pages.home.fragment.viewmodel
 
 import android.content.SharedPreferences
+import com.kalay.component.helpers.horizontalrcycler.HorizontalRecyclerDTO
 import com.kalay.component.ui.categorytitle.CategoryTitle
 import com.kalay.themoviedb.ui.pages.home.fragment.HomeFragmentGetData
 import com.kalay.themoviedb.ui.pages.home.fragment.repository.HomeFragmentRepository
@@ -11,12 +12,8 @@ import com.kalay.data.response.HomePageResponse
 import com.kalay.data.zipdto.HomePageAllRequestZipDTO
 import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function3
-import io.reactivex.subjects.BehaviorSubject
-import java.util.*
 import javax.inject.Inject
 
 @FragmentScope
@@ -46,11 +43,31 @@ class HomeFragmentViewModel @Inject constructor(
         popularResponse: DataFetchResult<HomePageResponse>
     ): DataFetchResult<*> {
 
-        // Slider Data
+        homeItemList.clear()
+
+        // Upcoming Data
         homeFragmentGetData.getSliderData(upComingResponse)
             ?.let {
                 homeItemList.add(CategoryTitle(categoryTitle =  "Upcoming"))
                 homeItemList.add(it)
+            }
+
+        // Top Rated Data
+        homeFragmentGetData.getTopRatedData(topRatedResponse)
+            ?.let {
+                homeItemList.add(CategoryTitle(categoryTitle =  "Top Rated"))
+                homeItemList.addAll(
+                    listOf(HorizontalRecyclerDTO(it, false))
+                )
+            }
+
+        // Popular Data
+        homeFragmentGetData.getTopRatedData(popularResponse)
+            ?.let {
+                homeItemList.add(CategoryTitle(categoryTitle =  "Popular"))
+                homeItemList.addAll(
+                    listOf(HorizontalRecyclerDTO(it, false))
+                )
             }
 
         return DataFetchResult.success(HomePageAllRequestZipDTO(homeItemList))

@@ -24,17 +24,17 @@ class SliderViewpagerAdapter(
 
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
         val item = itemList?.get(listPosition)
-        val imgSliderNewsPhoto: AppCompatImageView =
-            convertView.findViewById(R.id.imgItemSliderNewsPhoto)
-        val tvSliderNewsTitle: AppCompatTextView =
-            convertView.findViewById(R.id.tvItemSliderNewsTitle)
+        val imgSliderMoviePhoto: AppCompatImageView =
+            convertView.findViewById(R.id.imgItemSliderMoviePhoto)
+        val tvSliderMovieTitle: AppCompatTextView =
+            convertView.findViewById(R.id.tvItemSliderMovieTitle)
         val results = item?.results
+
+        results?.poster_path?.let { _posterPath -> imgSliderMoviePhoto.loadImage(_posterPath) }
+        tvSliderMovieTitle.text = results?.title
 
         convertView.setOnClickListener {
             itemClickListener?.invoke(items, listPosition)
         }
-
-        results?.poster_path?.let { _posterPath -> imgSliderNewsPhoto.loadImage(_posterPath) }
-        tvSliderNewsTitle.text = results?.title
     }
 }
