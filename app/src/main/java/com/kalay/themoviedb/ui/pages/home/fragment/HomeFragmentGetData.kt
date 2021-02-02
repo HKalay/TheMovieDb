@@ -3,6 +3,7 @@ package com.kalay.themoviedb.ui.pages.home.fragment
 import com.kalay.component.ui.slider.SliderDTO
 import com.kalay.component.ui.slider.SliderListDTO
 import com.kalay.component.ui.carousel.MovieCarouselDTO
+import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.extensions.addTo
 import com.kalay.core.networking.DataFetchResult
 import com.kalay.core.ui.recyclerview.DisplayItem
@@ -21,7 +22,7 @@ class HomeFragmentGetData(
 
         when (item) {
             is DataFetchResult.Success -> {
-                item.data.results.let {_resultsList->
+                item.data.results.let { _resultsList ->
                     Observable.fromIterable(_resultsList).subscribe { _results ->
                         sliderList.add(
                             SliderDTO(
@@ -48,7 +49,7 @@ class HomeFragmentGetData(
 
         when (item) {
             is DataFetchResult.Success -> {
-                item.data.results.let {_resultsList->
+                item.data.results.let { _resultsList ->
                     Observable.fromIterable(_resultsList).subscribe { _results ->
                         topRatedList.add(
                             MovieCarouselDTO(
@@ -66,5 +67,27 @@ class HomeFragmentGetData(
         return topRatedList
     }
 
+    // POPULAR DATA
+    fun getTPopularData(item: DataFetchResult<HomePageResponse>?): MutableList<DisplayItem>? {
+        val popularList = arrayListOf<DisplayItem>()
 
+        when (item) {
+            is DataFetchResult.Success -> {
+                item.data.results.let { _resultsList ->
+                    Observable.fromIterable(_resultsList).subscribe { _results ->
+                        popularList.add(
+                            MovieCardDTO(
+                                results = _results
+                            )
+                        )
+                    }.addTo(compositeDisposable)
+                }
+            }
+            else -> {
+
+            }
+        }
+
+        return popularList
+    }
 }

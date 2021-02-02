@@ -30,12 +30,13 @@ class HomeFragmentViewModel @Inject constructor(
             compositeDisposable
         )
 
-    val homePageAllRequestZip: Observable<DataFetchResult<*>> = Observable.zip(repository.upComingMovieDataResult.hide(),
-        repository.topRatedMovieDataResult.hide(),
-        repository.popularMovieDataResult.hide(),
-        Function3<DataFetchResult<HomePageResponse>, DataFetchResult<HomePageResponse>, DataFetchResult<HomePageResponse>, DataFetchResult<*>> { zipUpComingResponse, zipTopRatedResponse, zipPopularResponse ->
-            setHomePageList(zipUpComingResponse, zipTopRatedResponse,zipPopularResponse)
-        })
+    val homePageAllRequestZip: Observable<DataFetchResult<*>> =
+        Observable.zip(repository.upComingMovieDataResult.hide(),
+            repository.topRatedMovieDataResult.hide(),
+            repository.popularMovieDataResult.hide(),
+            Function3<DataFetchResult<HomePageResponse>, DataFetchResult<HomePageResponse>, DataFetchResult<HomePageResponse>, DataFetchResult<*>> { zipUpComingResponse, zipTopRatedResponse, zipPopularResponse ->
+                setHomePageList(zipUpComingResponse, zipTopRatedResponse, zipPopularResponse)
+            })
 
     private fun setHomePageList(
         upComingResponse: DataFetchResult<HomePageResponse>,
@@ -48,26 +49,31 @@ class HomeFragmentViewModel @Inject constructor(
         // Upcoming Data
         homeFragmentGetData.getSliderData(upComingResponse)
             ?.let {
-                homeItemList.add(CategoryTitle(categoryTitle =  "Upcoming"))
-                homeItemList.add(it)
+                it.let {
+                    homeItemList.add(CategoryTitle(categoryTitle = "Upcoming"))
+                    homeItemList.add(it)
+                }
+
             }
 
         // Top Rated Data
         homeFragmentGetData.getTopRatedData(topRatedResponse)
             ?.let {
-                homeItemList.add(CategoryTitle(categoryTitle =  "Top Rated"))
-                homeItemList.addAll(
-                    listOf(HorizontalRecyclerDTO(it, false))
-                )
+                it.let {
+                    homeItemList.add(CategoryTitle(categoryTitle = "Top Rated"))
+                    homeItemList.addAll(
+                        listOf(HorizontalRecyclerDTO(it, false))
+                    )
+                }
             }
 
         // Popular Data
-        homeFragmentGetData.getTopRatedData(popularResponse)
+        homeFragmentGetData.getTPopularData(popularResponse)
             ?.let {
-                homeItemList.add(CategoryTitle(categoryTitle =  "Popular"))
-                homeItemList.addAll(
-                    listOf(HorizontalRecyclerDTO(it, false))
-                )
+                it.let {
+                    homeItemList.add(CategoryTitle(categoryTitle = "Popular"))
+                    homeItemList.addAll(it)
+                }
             }
 
         return DataFetchResult.success(HomePageAllRequestZipDTO(homeItemList))

@@ -32,7 +32,7 @@ class MovieCarouselViewHolder(val view: View) : ViewHolder<MovieCarouselDTO>(vie
         val results = item.results
 
         results?.poster_path?.let { _posterPath -> imgCarouselMoviePhoto.loadImage(_posterPath) }
-        tvCarouselMovieVoteAverage.text = results?.vote_average.toString()
+        tvCarouselMovieVoteAverage.text = "Vote Average:"+ results?.vote_average
         tvCarouselMovieTitle.text = results?.title
 
         rootViewItemMovieCarousel.setOnClickListener {
