@@ -13,10 +13,19 @@ interface HomeFragmentContract {
         val upComingMovieDataResult: BehaviorSubject<DataFetchResult<HomePageResponse>>
         fun getUpComingMovieData()
 
+        val topRatedMovieDataResult: BehaviorSubject<DataFetchResult<HomePageResponse>>
+        fun getTopRatedMovieData()
+
+        val popularMovieDataResult: BehaviorSubject<DataFetchResult<HomePageResponse>>
+        fun getPopularMovieData()
+
+
         fun <T> handleError(result: BehaviorSubject<DataFetchResult<T>>, error: Throwable)
     }
 
     interface Remote {
-        fun getHomePageData(): Single<HomePageResponse>
+        fun getUpComingMovieData(): Single<HomePageResponse>
+        fun getTopRatedMovieData(): Single<HomePageResponse>
+        fun getPopularMovieData(): Single<HomePageResponse>
     }
 }

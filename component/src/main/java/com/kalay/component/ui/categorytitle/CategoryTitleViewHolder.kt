@@ -1,12 +1,10 @@
-package com.kalay.component.categorytitle
+package com.kalay.component.ui.categorytitle
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import com.kalay.component.R
 import com.kalay.core.ui.recyclerview.DisplayItem
 import com.kalay.core.ui.recyclerview.ViewHolder

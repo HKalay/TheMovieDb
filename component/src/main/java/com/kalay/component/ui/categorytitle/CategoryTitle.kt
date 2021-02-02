@@ -1,4 +1,4 @@
-package com.kalay.component.categorytitle
+package com.kalay.component.ui.categorytitle
 
 import android.os.Parcelable
 import com.kalay.component.constant.RecyclerviewAdapterConstant.TYPES.TYPE_CATEGORY_TITLE

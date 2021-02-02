@@ -11,7 +11,13 @@ class HomeFragmentRemoteData(
 	private val homePageApiInterface: IHomePageApi
 ) : HomeFragmentContract.Remote {
 
-	override fun getHomePageData(): Single<HomePageResponse> {
-		return homePageApiInterface.getUpcomingMovies()
-	}
+	override fun getUpComingMovieData(): Single<HomePageResponse> =
+		 homePageApiInterface.getUpcomingMovies()
+
+	override fun getTopRatedMovieData(): Single<HomePageResponse> =
+		homePageApiInterface.getTopRatedMovies()
+
+	override fun getPopularMovieData(): Single<HomePageResponse> =
+		homePageApiInterface.getPopularMovies()
+
 }

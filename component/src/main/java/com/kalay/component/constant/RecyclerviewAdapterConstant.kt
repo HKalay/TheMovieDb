@@ -1,8 +1,8 @@
 package com.kalay.component.constant
 
-import com.kalay.component.slider.SliderViewHolder
+import com.kalay.component.ui.slider.SliderViewHolder
 import com.kalay.component.helpers.horizontalrcycler.HorizontalRecyclerViewHolder
-import com.kalay.component.categorytitle.CategoryTitleViewHolder
+import com.kalay.component.ui.categorytitle.CategoryTitleViewHolder
 
 class RecyclerviewAdapterConstant {
     object TYPES {

@@ -1,13 +1,11 @@
-package com.kalay.component.slider
+package com.kalay.component.ui.slider
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.bumptech.glide.Glide
 import com.kalay.component.R
 import com.kalay.component.helpers.loopingpager.LoopingPagerAdapter
 import com.kalay.core.extensions.loadImage

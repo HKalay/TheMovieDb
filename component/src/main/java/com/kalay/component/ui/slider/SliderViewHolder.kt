@@ -1,4 +1,4 @@
-package com.kalay.component.slider
+package com.kalay.component.ui.slider
 
 import android.view.LayoutInflater
 import android.view.View

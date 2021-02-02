@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/material_16dp"
-    android:layout_marginTop="@dimen/material_16dp"
+    android:layout_marginTop="@dimen/material_8dp"
     android:layout_marginRight="@dimen/material_16dp">
 
     <com.google.android.material.card.MaterialCardView
@@ -43,8 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="@dimen/material_36dp"
+                    android:paddingBottom="@dimen/material_36dp"
                     app:dotsColor="@color/gray"
                     app:dotsCornerRadius="8dp"
                     app:dotsSize="@dimen/material_8dp"

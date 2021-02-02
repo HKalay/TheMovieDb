@@ -12,6 +12,6 @@ data class Results (
     val poster_path:String?,
     val release_date:String?,
     val title:String?,
-    val vote_average:Int?,
+    val vote_average:Double?,
     val vote_count:Int?
 ):Parcelable

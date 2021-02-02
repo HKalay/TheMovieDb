@@ -24,12 +24,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/material_16dp"
             android:layout_marginTop="@dimen/material_16dp"
-            android:textStyle="bold"
             android:layout_marginRight="@dimen/material_16dp"
             android:layout_marginBottom="@dimen/material_56dp"
             android:maxLines="2"
+            android:textColor="@color/white"
             android:textSize="21sp"
-            tools:text="Title" />
+            android:textStyle="bold"
+            tools:text="Movie Name" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

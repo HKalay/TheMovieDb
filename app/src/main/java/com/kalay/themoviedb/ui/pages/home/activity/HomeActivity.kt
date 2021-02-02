@@ -97,6 +97,7 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
     private fun clickBottomNavigation() {
         bottomNavigationView?.setOnNavigationItemSelectedListener {
             bottomNavigationPosition = it.itemId
+            selectTab(bottomNavigationPosition)
             return@setOnNavigationItemSelectedListener true
         }
     }

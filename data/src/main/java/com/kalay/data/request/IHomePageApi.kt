@@ -9,4 +9,10 @@ interface IHomePageApi {
     @GET("movie/upcoming")
     fun getUpcomingMovies(): Single<HomePageResponse>
 
+    @GET("movie/top_rated")
+    fun getTopRatedMovies(): Single<HomePageResponse>
+
+    @GET("movie/popular")
+    fun getPopularMovies(): Single<HomePageResponse>
+
 }

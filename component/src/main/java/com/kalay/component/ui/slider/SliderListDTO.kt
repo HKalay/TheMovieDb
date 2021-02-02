@@ -1,4 +1,4 @@
-package com.kalay.component.slider
+package com.kalay.component.ui.slider
 
 import android.os.Parcelable
 import com.kalay.component.constant.RecyclerviewAdapterConstant.TYPES.TYPE_SLIDER
