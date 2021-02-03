@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.kalay.core.extensions.gone
+import com.kalay.core.extensions.isNetworkConnected
 import com.kalay.core.extensions.visibile
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.activity.BaseActivity
@@ -29,7 +30,7 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        selectTab(bottomNavigationPosition)
+        networkControl()
     }
 
     override fun onBackPressed() {
@@ -47,11 +48,11 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
         transaction.commit()
     }
 
-    private fun invisibleTabContainerExcept(container: View) {
+    private fun invisibleTabContainerExcept(container: View? = null) {
         homeTabContainer.gone()
         searchTabContainer.gone()
         favoriteTabContainer.gone()
-        container.visibile()
+        container?.visibile()
     }
 
     private fun selectTab(itemId: Int) {
@@ -97,8 +98,20 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
     private fun clickBottomNavigation() {
         bottomNavigationView?.setOnNavigationItemSelectedListener {
             bottomNavigationPosition = it.itemId
-            selectTab(bottomNavigationPosition)
+
+            networkControl()
+
             return@setOnNavigationItemSelectedListener true
+        }
+    }
+
+    private fun networkControl(){
+        if (isNetworkConnected()) {
+            selectTab(bottomNavigationPosition)
+            llNoInternet.gone()
+        } else {
+            llNoInternet.visibile()
+            invisibleTabContainerExcept(null)
         }
     }
 }

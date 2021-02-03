@@ -38,35 +38,35 @@ class HomeFragmentRepository(
         BehaviorSubject.create<DataFetchResult<HomePageResponse>>()
 
     override fun getTopRatedMovieData() {
-		topRatedMovieDataResult.loading(true)
-		remote.getTopRatedMovieData()
-			.performOnBackOutOnMain(scheduler)
-			.subscribe(
-				{
-					topRatedMovieDataResult.success(it)
-				},
-				{ error ->
-					handleError(topRatedMovieDataResult, error)
-				})
-			.addTo(compositeDisposable)
+        topRatedMovieDataResult.loading(true)
+        remote.getTopRatedMovieData()
+            .performOnBackOutOnMain(scheduler)
+            .subscribe(
+                {
+                    topRatedMovieDataResult.success(it)
+                },
+                { error ->
+                    handleError(topRatedMovieDataResult, error)
+                })
+            .addTo(compositeDisposable)
     }
 
 
-    override val popularMovieDataResult=
-		BehaviorSubject.create<DataFetchResult<HomePageResponse>>()
+    override val popularMovieDataResult =
+        BehaviorSubject.create<DataFetchResult<HomePageResponse>>()
 
-    override fun getPopularMovieData() {
-		popularMovieDataResult.loading(true)
-		remote.getPopularMovieData()
-			.performOnBackOutOnMain(scheduler)
-			.subscribe(
-				{
-					popularMovieDataResult.success(it)
-				},
-				{ error ->
-					handleError(popularMovieDataResult, error)
-				})
-			.addTo(compositeDisposable)
+    override fun getPopularMovieData(pageIndex: Int) {
+        popularMovieDataResult.loading(true)
+        remote.getPopularMovieData(pageIndex)
+            .performOnBackOutOnMain(scheduler)
+            .subscribe(
+                {
+                    popularMovieDataResult.success(it)
+                },
+                { error ->
+                    handleError(popularMovieDataResult, error)
+                })
+            .addTo(compositeDisposable)
     }
 
     override fun <T> handleError(result: BehaviorSubject<DataFetchResult<T>>, error: Throwable) {

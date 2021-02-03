@@ -79,10 +79,16 @@ class HomeFragmentViewModel @Inject constructor(
         return DataFetchResult.success(HomePageAllRequestZipDTO(homeItemList))
     }
 
-    fun getHomePageData() {
+    fun getUpComingMovieData() {
         repository.getUpComingMovieData()
+    }
+
+    fun getTopRatedMovieData(){
         repository.getTopRatedMovieData()
-        repository.getPopularMovieData()
+    }
+
+    fun getPopularMovieData(pageIndex:Int){
+        repository.getPopularMovieData(pageIndex)
     }
 
 }

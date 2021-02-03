@@ -10,80 +10,73 @@
     android:layout_marginRight="@dimen/material_16dp"
     app:cardCornerRadius="10dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="3dp"
-        app:cardCornerRadius="10dp">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgItemMovieCardPhoto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            tools:src="@tools:sample/avatars" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgItemMovieCardPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                tools:src="@tools:sample/avatars" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/shape_gradient_movie_card"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/material_16dp">
 
-            <LinearLayout
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvItemMovieCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/shape_gradient_movie_card"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/material_16dp">
+                android:layout_marginLeft="@dimen/material_12dp"
+                android:layout_marginRight="@dimen/material_12dp"
+                android:lineSpacingMultiplier="1.35"
+                android:maxLines="3"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/movie_name" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llItemMovieCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/material_12dp"
+                android:layout_marginTop="@dimen/material_8dp"
+                android:layout_marginRight="@dimen/material_12dp"
+                android:layout_marginBottom="@dimen/material_12dp"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                tools:layout_editor_absoluteY="177dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvItemMovieCardTitle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvItemMovieCardVoteAverage"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/material_12dp"
-                    android:layout_marginRight="@dimen/material_12dp"
-                    android:lineSpacingMultiplier="1.35"
-                    android:maxLines="3"
+                    android:layout_gravity="center"
+                    android:layout_weight="9"
+                    android:maxLines="1"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:text="@string/movie_name" />
+                    android:textSize="15sp"
+                    android:textStyle="bold|italic"
+                    tools:text="@string/vote_avarage" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llItemMovieCard"
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgItemMovieCardSave"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/material_12dp"
-                    android:layout_marginTop="@dimen/material_8dp"
-                    android:layout_marginRight="@dimen/material_12dp"
-                    android:layout_marginBottom="@dimen/material_12dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10"
-                    tools:layout_editor_absoluteY="177dp">
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_save" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvItemMovieCardVoteAverage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="9"
-                        android:maxLines="1"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold|italic"
-                        tools:text="@string/vote_avarage" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgItemMovieCardSave"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_save" />
+        </LinearLayout>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
 
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </com.google.android.material.card.MaterialCardView>
 </com.google.android.material.card.MaterialCardView>

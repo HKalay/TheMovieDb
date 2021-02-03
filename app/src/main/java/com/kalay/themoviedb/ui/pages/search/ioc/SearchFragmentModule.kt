@@ -3,7 +3,7 @@ package com.kalay.themoviedb.ui.pages.search.ioc
 import androidx.fragment.app.Fragment
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.Scheduler
-import com.kalay.data.request.IHomePageApi
+import com.kalay.data.request.ISearchPageApi
 import com.kalay.themoviedb.ioc.keys.FragmentViewModelKey
 import com.kalay.themoviedb.ui.base.fragment.BaseViewModelFragmentModule
 import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
@@ -36,7 +36,7 @@ abstract class SearchFragmentModule {
         @Provides
         @FragmentScope
         @JvmStatic
-        fun searchFragmentRemoteData(apiInterface: IHomePageApi) =
+        fun searchFragmentRemoteData(apiInterface: ISearchPageApi) =
             SearchFragmentRemoteData(apiInterface)
 
         @Provides

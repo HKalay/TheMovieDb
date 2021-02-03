@@ -1,13 +1,11 @@
 package com.kalay.themoviedb.ui.pages.home.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.kalay.component.TheMovieRecycleriewAdapter
-import com.kalay.core.extensions.addTo
-import com.kalay.core.extensions.gone
-import com.kalay.core.extensions.setup
-import com.kalay.core.extensions.visibile
+import com.kalay.core.extensions.*
 import com.kalay.core.networking.DataFetchResult
 import com.kalay.data.zipdto.HomePageAllRequestZipDTO
 import com.kalay.themoviedb.R
@@ -31,8 +29,8 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
 
     override val layoutViewRes = R.layout.fragment_home
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     override fun onPause() {
@@ -54,10 +52,18 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
 
     }
 
-    private fun bindHomePage(){
-        rvHomePage.setup(adapter = adapterPageList.getAdapter())
+    private fun getHomePageDate() {
+        viewModel.getUpComingMovieData()
+        viewModel.getTopRatedMovieData()
+        viewModel.getPopularMovieData(1)
+    }
 
-        viewModel.getHomePageData()
+    private fun bindHomePage() {
+        rvHomePage.setup(
+            adapter = adapterPageList.getAdapter()
+        )
+
+        getHomePageDate()
 
         if (homePageDisposable == null) {
             homePageDisposable = viewModel.homePageAllRequestZip.subscribe {
@@ -69,12 +75,14 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
                             adapterPageList.getAdapter().updateAllItems(homeData)
                         }
                         pbHomePage.gone()
+                        rvHomePage.visibile()
                     }
                     is DataFetchResult.Progress -> {
                         pbHomePage.visibile()
                     }
                     is DataFetchResult.Failure -> {
                         pbHomePage.gone()
+                        rvHomePage.gone()
                     }
                 }
             }

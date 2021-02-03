@@ -3,4 +3,7 @@
     <string name="home_page">Home Page</string>
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="no_results">No results match your search criteria</string>
+    <string name="no_internet">No Internet</string>
 </resources>

@@ -3,6 +3,7 @@ package com.kalay.data.request
 import com.kalay.data.response.HomePageResponse
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface IHomePageApi {
 
@@ -13,6 +14,5 @@ interface IHomePageApi {
     fun getTopRatedMovies(): Single<HomePageResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(): Single<HomePageResponse>
-
+    fun getPopularMovies(@Query("page") pageIndex: Int): Single<HomePageResponse>
 }
