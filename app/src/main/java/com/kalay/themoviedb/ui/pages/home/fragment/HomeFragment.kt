@@ -2,14 +2,20 @@ package com.kalay.themoviedb.ui.pages.home.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.kalay.component.TheMovieRecycleriewAdapter
+import com.kalay.component.ui.slider.SliderListDTO
+import com.kalay.core.enums.PageType
+import com.kalay.core.enums.ParcelableData
 import com.kalay.core.extensions.*
 import com.kalay.core.networking.DataFetchResult
 import com.kalay.data.zipdto.HomePageAllRequestZipDTO
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.fragment.BaseDataFetchFragment
+import com.kalay.themoviedb.ui.common.navigation.NavigationManager
+import com.kalay.themoviedb.ui.pages.detail.DetailActivity
 import com.kalay.themoviedb.ui.pages.home.fragment.viewmodel.HomeFragmentViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -49,7 +55,7 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
         compositeDisposable = CompositeDisposable()
 
         bindHomePage()
-
+        adapterPageListClick()
     }
 
     private fun getHomePageDate() {
@@ -88,6 +94,26 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
             }
         }
         homePageDisposable?.addTo(compositeDisposable)
+    }
+
+    private fun adapterPageListClick() {
+        adapterPageList.getAdapter().itemClickListener = { item, position ->
+            when (item) {
+                is SliderListDTO -> {
+                    val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra(ParcelableData.SLIDER_POSITION.toString(), position)
+                    intent.putExtra(ParcelableData.SLIDER_LIST.toString(), item)
+                    intent.putExtra(
+                        ParcelableData.PAGE_TYPE.toString(),
+                        PageType.Slider.toString()
+                    )
+                    startActivity(intent)
+                }
+                else -> {
+                    NavigationManager().navigate(model = item, context = requireContext())
+                }
+            }
+        }
     }
 }
 

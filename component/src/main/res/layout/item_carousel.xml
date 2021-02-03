@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/imgItemCarouselMoviePhoto"
-                android:background="@drawable/shape_gradient_slider"
+                android:background="@drawable/shape_gradient"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/material_16dp">
 

@@ -66,6 +66,9 @@ dependencies {
     // ViewPager Indicator
     implementation "com.tbuonomo.andrui:viewpagerdotsindicator:$versions.indicator"
 
+    // Room
+    kapt deps.android.roomCompiler
+
 
     // Test
     testImplementation 'junit:junit:4.13.1'

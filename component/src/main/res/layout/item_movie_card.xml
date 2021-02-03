@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/shape_gradient_movie_card"
+            android:background="@drawable/shape_gradient"
             android:orientation="vertical"
             android:paddingTop="@dimen/material_16dp">
 

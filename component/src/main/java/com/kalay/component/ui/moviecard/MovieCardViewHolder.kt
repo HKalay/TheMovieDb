@@ -14,7 +14,12 @@ import com.kalay.core.ui.recyclerview.DisplayItem
 import com.kalay.core.ui.recyclerview.ViewHolder
 import com.kalay.core.ui.recyclerview.ViewHolderBinder
 import com.kalay.core.ui.recyclerview.ViewHolderFactory
-import io.reactivex.disposables.CompositeDisposable
+import com.kalay.data.database.AppDatabase
+import com.kalay.data.database.TheMovieLocalDbModule
+import com.kalay.data.database.dao.MovieCardDBDao
+import com.kalay.data.database.model.MovieCardDbDTO
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 /**
@@ -34,16 +39,31 @@ class MovieCardViewHolder(val view: View) : ViewHolder<MovieCardDTO>(view) {
     private var imgNewsCardSave: AppCompatImageView =
         view.findViewById(R.id.imgItemMovieCardSave)
 
+  /*  @Inject
+    private val db: AppDatabase? = TheMovieLocalDbModule().provideDb(view.context)
+    private val dao: MovieCardDBDao? = db?.movieCardDbDao()*/
+
 
     override fun bind(item: MovieCardDTO) {
-        val results = item.results
 
+        val results = item.results
         results?.poster_path?.let { _posterPath -> imgMovieCardPhoto.loadImage(_posterPath) }
         tvMovieCardVoteAverage.text = "Vote Average:" + results?.vote_average
         tvMovieCardTitle.text = results?.title
 
         rootViewMovieCard.setOnClickListener {
             itemClickListener?.invoke(item, adapterPosition)
+        }
+
+        imgNewsCardSave.setOnClickListener {
+            /*GlobalScope.launch {
+                dao?.insertMovie(
+                    MovieCardDbDTO(
+                        localDbId = item.results?.id,
+                        results = item.results
+                    )
+                )
+            }*/
         }
     }
 
