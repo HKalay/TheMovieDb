@@ -15,16 +15,11 @@ import com.kalay.core.ui.recyclerview.ViewHolder
 import com.kalay.core.ui.recyclerview.ViewHolderBinder
 import com.kalay.core.ui.recyclerview.ViewHolderFactory
 import com.kalay.data.database.AppDatabase
-import com.kalay.data.database.TheMovieLocalDbModule
 import com.kalay.data.database.dao.MovieCardDBDao
 import com.kalay.data.database.model.MovieCardDbDTO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-
-/**
- * Created by Hamdullah KALAY on 3/30/2020.
- */
 
 class MovieCardViewHolder(val view: View) : ViewHolder<MovieCardDTO>(view) {
 
@@ -36,13 +31,12 @@ class MovieCardViewHolder(val view: View) : ViewHolder<MovieCardDTO>(view) {
         view.findViewById(R.id.tvItemMovieCardTitle)
     private var tvMovieCardVoteAverage: AppCompatTextView =
         view.findViewById(R.id.tvItemMovieCardVoteAverage)
-    private var imgNewsCardSave: AppCompatImageView =
+    private var imgMovieCardSave: AppCompatImageView =
         view.findViewById(R.id.imgItemMovieCardSave)
 
-  /*  @Inject
+    /*  @Inject
     private val db: AppDatabase? = TheMovieLocalDbModule().provideDb(view.context)
     private val dao: MovieCardDBDao? = db?.movieCardDbDao()*/
-
 
     override fun bind(item: MovieCardDTO) {
 
@@ -55,7 +49,7 @@ class MovieCardViewHolder(val view: View) : ViewHolder<MovieCardDTO>(view) {
             itemClickListener?.invoke(item, adapterPosition)
         }
 
-        imgNewsCardSave.setOnClickListener {
+        imgMovieCardSave.setOnClickListener {
             /*GlobalScope.launch {
                 dao?.insertMovie(
                     MovieCardDbDTO(

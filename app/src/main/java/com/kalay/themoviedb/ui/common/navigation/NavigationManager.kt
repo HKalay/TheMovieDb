@@ -2,13 +2,12 @@ package com.kalay.themoviedb.ui.common.navigation
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import com.kalay.component.ui.carousel.MovieCarouselDTO
 import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.enums.PageType
 import com.kalay.core.enums.ParcelableData
 import com.kalay.core.ui.recyclerview.DisplayItem
-import com.kalay.themoviedb.ui.pages.detail.DetailActivity
+import com.kalay.themoviedb.ui.pages.detail.activity.DetailActivity
 
 class NavigationManager {
 

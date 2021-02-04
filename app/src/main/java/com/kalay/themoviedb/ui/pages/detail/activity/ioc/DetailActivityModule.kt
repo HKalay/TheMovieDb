@@ -1,4 +1,4 @@
-package com.kalay.themoviedb.ui.pages.detail.ioc
+package com.kalay.themoviedb.ui.pages.detail.activity.ioc
 
 import androidx.appcompat.app.AppCompatActivity
 import com.kalay.core.ioc.scopes.ActivityScope
@@ -7,8 +7,8 @@ import com.kalay.themoviedb.ioc.keys.ActivityViewModelKey
 import com.kalay.themoviedb.ioc.modules.TheMovieApiServiceModule
 import com.kalay.themoviedb.ui.base.activity.BaseActivityModule
 import com.kalay.themoviedb.ui.base.viewmodel.BaseActivityViewModel
-import com.kalay.themoviedb.ui.pages.detail.DetailActivity
-import com.kalay.themoviedb.ui.pages.detail.viewmodel.DetailActivityViewModel
+import com.kalay.themoviedb.ui.pages.detail.activity.DetailActivity
+import com.kalay.themoviedb.ui.pages.detail.activity.viewmodel.DetailActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

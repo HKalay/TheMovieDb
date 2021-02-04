@@ -3,8 +3,6 @@ package com.kalay.themoviedb.ui.pages.search.viewmodel
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.kalay.component.ui.categorytitle.CategoryTitle
-import com.kalay.core.extensions.toLiveData
 import com.kalay.core.extensions.toLiveEvent
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.DataFetchResult
@@ -47,13 +45,13 @@ class SearchFragmentViewModel @Inject constructor(
         }
 
     private fun setSearchPageList(
-        forYouPageResponse: DataFetchResult<SearchPageResponse>
+        searchPageResponse: DataFetchResult<SearchPageResponse>
     ): DataFetchResult<*> {
 
         searchItemList.clear()
-        when (forYouPageResponse) {
+        when (searchPageResponse) {
             is DataFetchResult.Success -> {
-                searchFragmentGetData.getSearchData(forYouPageResponse.data.results)
+                searchFragmentGetData.getSearchData(searchPageResponse.data.results)
                     .let {
                         searchItemList.addAll(it)
                     }

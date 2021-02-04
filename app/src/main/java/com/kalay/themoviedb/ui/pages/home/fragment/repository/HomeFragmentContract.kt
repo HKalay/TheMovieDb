@@ -17,7 +17,7 @@ interface HomeFragmentContract {
         fun getTopRatedMovieData()
 
         val popularMovieDataResult: BehaviorSubject<DataFetchResult<HomePageResponse>>
-        fun getPopularMovieData(pageIndex:Int)
+        fun getPopularMovieData()
 
 
         fun <T> handleError(result: BehaviorSubject<DataFetchResult<T>>, error: Throwable)
@@ -26,6 +26,6 @@ interface HomeFragmentContract {
     interface Remote {
         fun getUpComingMovieData(): Single<HomePageResponse>
         fun getTopRatedMovieData(): Single<HomePageResponse>
-        fun getPopularMovieData(pageIndex:Int): Single<HomePageResponse>
+        fun getPopularMovieData(): Single<HomePageResponse>
     }
 }

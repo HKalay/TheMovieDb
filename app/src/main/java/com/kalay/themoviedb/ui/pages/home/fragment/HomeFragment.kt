@@ -15,7 +15,7 @@ import com.kalay.data.zipdto.HomePageAllRequestZipDTO
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.fragment.BaseDataFetchFragment
 import com.kalay.themoviedb.ui.common.navigation.NavigationManager
-import com.kalay.themoviedb.ui.pages.detail.DetailActivity
+import com.kalay.themoviedb.ui.pages.detail.activity.DetailActivity
 import com.kalay.themoviedb.ui.pages.home.fragment.viewmodel.HomeFragmentViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -2,6 +2,7 @@ package com.kalay.themoviedb.ioc.modules
 
 import com.kalay.core.ioc.scopes.ActivityScope
 import com.kalay.data.request.IHomePageApi
+import com.kalay.data.request.IMovieDetailPageApi
 import com.kalay.data.request.ISearchPageApi
 import dagger.Module
 import dagger.Provides
@@ -24,6 +25,12 @@ abstract class TheMovieApiServiceModule {
         @JvmStatic
         fun provideISearchApi(retrofit: Retrofit): ISearchPageApi =
             retrofit.create(ISearchPageApi::class.java)
+
+        @Provides
+        @ActivityScope
+        @JvmStatic
+        fun provideIMovieApi(retrofit: Retrofit): IMovieDetailPageApi =
+            retrofit.create(IMovieDetailPageApi::class.java)
 
     }
 }

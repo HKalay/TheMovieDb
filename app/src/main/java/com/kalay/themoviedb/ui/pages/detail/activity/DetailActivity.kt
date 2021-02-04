@@ -1,13 +1,14 @@
-package com.kalay.themoviedb.ui.pages.detail
+package com.kalay.themoviedb.ui.pages.detail.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.kalay.core.enums.PageType
 import com.kalay.core.enums.ParcelableData
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.activity.BaseActivity
-import com.kalay.themoviedb.ui.pages.detail.viewmodel.DetailActivityViewModel
+import com.kalay.themoviedb.ui.pages.detail.activity.viewmodel.DetailActivityViewModel
+import com.kalay.themoviedb.ui.pages.detail.fragment.MovieDetailMasterFragment
+import com.kalay.themoviedb.ui.pages.moviedetail.MovieDetailFragment
 
 class DetailActivity : BaseActivity<DetailActivityViewModel>() {
 
@@ -21,21 +22,18 @@ class DetailActivity : BaseActivity<DetailActivityViewModel>() {
         pageType =
             intent.getStringExtra(ParcelableData.PAGE_TYPE.toString())?.toString()
 
-        Log.i("Merhaba", "Merhaba:$pageType")
-
-        /* when (pageType) {
-             PageType.Slider.toString() -> {
-                 navigateToFragment(
-                     NewsDetailMasterFragment.newInstance(
-                         intent.extras
-                     )
-                 )
-             }
-             else -> {
-                 navigateToFragment(NewsDetailFragment.newInstance(intent.extras))
-             }
-         }*/
-
+        when (pageType) {
+            PageType.Slider.toString() -> {
+                navigateToFragment(
+                    MovieDetailMasterFragment.newInstance(
+                        intent.extras
+                    )
+                )
+            }
+            else -> {
+                navigateToFragment(MovieDetailFragment.newInstance(intent.extras))
+            }
+        }
     }
 
     private fun navigateToFragment(fragment: Fragment) {

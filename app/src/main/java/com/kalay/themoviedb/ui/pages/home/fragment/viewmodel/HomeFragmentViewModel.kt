@@ -88,7 +88,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getPopularMovieData(pageIndex:Int){
-        repository.getPopularMovieData(pageIndex)
+        repository.getPopularMovieData()
     }
 
 }

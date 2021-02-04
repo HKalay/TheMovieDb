@@ -14,5 +14,5 @@ interface IHomePageApi {
     fun getTopRatedMovies(): Single<HomePageResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(@Query("page") pageIndex: Int): Single<HomePageResponse>
+    fun getPopularMovies(): Single<HomePageResponse>
 }

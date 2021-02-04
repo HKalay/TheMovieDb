@@ -17,6 +17,6 @@ class HomeFragmentRemoteData(
 	override fun getTopRatedMovieData(): Single<HomePageResponse> =
 		homePageApiInterface.getTopRatedMovies()
 
-	override fun getPopularMovieData(pageIndex: Int): Single<HomePageResponse> =
-		homePageApiInterface.getPopularMovies(pageIndex)
+	override fun getPopularMovieData(): Single<HomePageResponse> =
+		homePageApiInterface.getPopularMovies()
 }

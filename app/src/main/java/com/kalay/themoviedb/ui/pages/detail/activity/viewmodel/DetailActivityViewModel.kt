@@ -1,4 +1,4 @@
-package com.kalay.themoviedb.ui.pages.detail.viewmodel
+package com.kalay.themoviedb.ui.pages.detail.activity.viewmodel
 
 import com.kalay.core.ioc.scopes.ActivityScope
 import com.kalay.themoviedb.ui.base.viewmodel.BaseActivityViewModel

@@ -55,9 +55,9 @@ class HomeFragmentRepository(
     override val popularMovieDataResult =
         BehaviorSubject.create<DataFetchResult<HomePageResponse>>()
 
-    override fun getPopularMovieData(pageIndex: Int) {
+    override fun getPopularMovieData() {
         popularMovieDataResult.loading(true)
-        remote.getPopularMovieData(pageIndex)
+        remote.getPopularMovieData()
             .performOnBackOutOnMain(scheduler)
             .subscribe(
                 {
