@@ -49,7 +49,7 @@ class MovieDetailFragmentViewModel @Inject constructor(
         movieDetailItemList.clear()
         when (searchPageResponse) {
             is DataFetchResult.Success -> {
-                movieDetailFragmentGetData.getMovieDetailSpothData(searchPageResponse.data)
+                movieDetailFragmentGetData.getMovieData(searchPageResponse.data)
                     .let {
                         movieDetailItemList.addAll(it)
                     }

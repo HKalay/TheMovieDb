@@ -5,6 +5,7 @@
     <color name="colorPrimaryLight">#B2DFDB</color>
     <color name="colorAccent">#FFC107</color>
     <color name="gray">#fff5f5f5</color>
+    <color name="green">#6bb96b</color>
 
     <bool name="default_circle_indicator_centered">true</bool>
     <color name="default_circle_indicator_fill_color">#FFffffff</color>
