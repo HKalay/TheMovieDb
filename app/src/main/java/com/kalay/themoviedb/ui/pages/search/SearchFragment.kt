@@ -6,7 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
-import com.kalay.component.TheMovieRecycleriewAdapter
+import com.kalay.component.TheMovieRecyclerviewAdapter
 import com.kalay.core.extensions.gone
 import com.kalay.core.extensions.setup
 import com.kalay.core.extensions.visibile
@@ -24,7 +24,7 @@ class SearchFragment : BaseDataFetchFragment<SearchFragmentViewModel>() {
     lateinit var compositeDisposable: CompositeDisposable
 
     @Inject
-    lateinit var adapterPageList: TheMovieRecycleriewAdapter
+    lateinit var adapterPageList: TheMovieRecyclerviewAdapter
 
     private val searchPageList = mutableListOf<DisplayItem>()
 

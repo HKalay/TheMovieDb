@@ -3,7 +3,7 @@ package com.kalay.themoviedb.ui.pages.moviedetail
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.kalay.component.TheMovieRecycleriewAdapter
+import com.kalay.component.TheMovieRecyclerviewAdapter
 import com.kalay.core.enums.ParcelableData
 import com.kalay.core.extensions.gone
 import com.kalay.core.extensions.setup
@@ -40,7 +40,7 @@ class MovieDetailFragment : BaseDataFetchFragment<MovieDetailFragmentViewModel>(
     private val moviePageList = mutableListOf<DisplayItem>()
 
     @Inject
-    lateinit var adapterMovieDetailPageList: TheMovieRecycleriewAdapter
+    lateinit var adapterMovieDetailPageList: TheMovieRecyclerviewAdapter
 
     override val viewModelClass = MovieDetailFragmentViewModel::class.java
 

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.kalay.component.TheMovieRecycleriewAdapter
+import com.kalay.component.TheMovieRecyclerviewAdapter
 import com.kalay.component.ui.slider.SliderListDTO
 import com.kalay.core.enums.PageType
 import com.kalay.core.enums.ParcelableData
@@ -28,7 +28,7 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
     var homePageDisposable: Disposable? = null
 
     @Inject
-    lateinit var adapterPageList: TheMovieRecycleriewAdapter
+    lateinit var adapterPageList: TheMovieRecyclerviewAdapter
 
 
     override val viewModelClass = HomeFragmentViewModel::class.java

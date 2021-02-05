@@ -1,6 +1,5 @@
 package com.kalay.component.ui.moviedetail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +34,6 @@ class MovieDetailViewHolder(val view: View) : ViewHolder<MovieDetailDTO>(view) {
 
     lateinit var compositeDisposable: CompositeDisposable
 
-
-
     override fun bind(item: MovieDetailDTO) {
         compositeDisposable = CompositeDisposable()
         item.movieDetail?.backdrop_path.let { _backPath ->
@@ -51,16 +48,15 @@ class MovieDetailViewHolder(val view: View) : ViewHolder<MovieDetailDTO>(view) {
             viewHolderFactoryMap = RecyclerviewAdapterConstant().holderFactoryMap
         )
 
-        rvMovieDetailGenres.setup(adapterRecyclerView)
+        rvMovieDetailGenres.setup(
+            adapter = adapterRecyclerView
+        )
 
         val genres = arrayListOf<GenresDTO>()
         Observable.fromIterable(item.movieDetail?.genres).subscribe { _genres->
             genres.add(GenresDTO(_genres))
         }.addTo(compositeDisposable)
 
-
-
-        Log.i("Merhaba",genres.toString())
 
         adapterRecyclerView.updateAllItems( listOf(HorizontalRecyclerDTO(genres, false)))
 

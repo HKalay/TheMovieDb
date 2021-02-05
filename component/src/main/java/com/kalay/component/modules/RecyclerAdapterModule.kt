@@ -1,6 +1,6 @@
 package com.kalay.component.modules
 
-import com.kalay.component.TheMovieRecycleriewAdapter
+import com.kalay.component.TheMovieRecyclerviewAdapter
 import dagger.Module
 import dagger.Provides
 
@@ -8,7 +8,7 @@ import dagger.Provides
 class RecyclerAdapterModule {
 
     @Provides
-    fun provideAdapter(): TheMovieRecycleriewAdapter {
-        return TheMovieRecycleriewAdapter()
+    fun provideAdapter(): TheMovieRecyclerviewAdapter {
+        return TheMovieRecyclerviewAdapter()
     }
 }
