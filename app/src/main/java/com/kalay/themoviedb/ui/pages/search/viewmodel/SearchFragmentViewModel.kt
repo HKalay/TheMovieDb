@@ -3,6 +3,7 @@ package com.kalay.themoviedb.ui.pages.search.viewmodel
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.extensions.toLiveEvent
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.DataFetchResult
@@ -61,11 +62,28 @@ class SearchFragmentViewModel @Inject constructor(
             }
         }
 
+        // Movie Card Saved Status
+        movieCardStatus()
+
         return DataFetchResult.success(searchItemList)
     }
 
     fun getSearchData(searchQuery: String) {
         repository.getSearchMovieData(searchQuery)
+    }
+
+    private fun movieCardStatus() {
+        val list = repository.getAllLocalMovieList
+        searchItemList.map {
+            when (it) {
+                is MovieCardDTO -> {
+                    val isSaved = list.any { localMovieCardDTO ->
+                        it.results?.id == localMovieCardDTO.results?.id
+                    }
+                    it.movieCardIsSaved = isSaved
+                }
+            }
+        }
     }
 
 }

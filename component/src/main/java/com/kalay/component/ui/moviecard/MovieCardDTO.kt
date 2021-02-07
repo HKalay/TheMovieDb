@@ -10,5 +10,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MovieCardDTO(
-    val results: Results?
+    val results: Results?,
+    var movieCardIsSaved: Boolean = false
 ) : Parcelable, DisplayItem(TYPE_MOVIE_CARD)

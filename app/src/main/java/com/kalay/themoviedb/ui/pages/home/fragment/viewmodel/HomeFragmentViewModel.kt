@@ -3,6 +3,7 @@ package com.kalay.themoviedb.ui.pages.home.fragment.viewmodel
 import android.content.SharedPreferences
 import com.kalay.component.helpers.horizontalrcycler.HorizontalRecyclerDTO
 import com.kalay.component.ui.categorytitle.CategoryTitle
+import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.themoviedb.ui.pages.home.fragment.HomeFragmentGetData
 import com.kalay.themoviedb.ui.pages.home.fragment.repository.HomeFragmentRepository
 import com.kalay.core.ioc.scopes.FragmentScope
@@ -14,6 +15,8 @@ import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function3
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @FragmentScope
@@ -50,8 +53,7 @@ class HomeFragmentViewModel @Inject constructor(
         homeFragmentGetData.getSliderData(upComingResponse)
             ?.let {
                 it.let {
-                    homeItemList.add(CategoryTitle(categoryTitle = "Upcoming"))
-                    homeItemList.add(it)
+                    homeItemList.addAll(it)
                 }
 
             }
@@ -60,21 +62,25 @@ class HomeFragmentViewModel @Inject constructor(
         homeFragmentGetData.getTopRatedData(topRatedResponse)
             ?.let {
                 it.let {
-                    homeItemList.add(CategoryTitle(categoryTitle = "Top Rated"))
-                    homeItemList.addAll(
-                        listOf(HorizontalRecyclerDTO(it, false))
-                    )
+                    GlobalScope.launch {
+                        homeItemList.add(CategoryTitle(categoryTitle = "Top Rated"))
+                        homeItemList.addAll(
+                            listOf(HorizontalRecyclerDTO(it, false))
+                        )
+                    }
                 }
             }
 
         // Popular Data
-        homeFragmentGetData.getTPopularData(popularResponse)
+        homeFragmentGetData.getPopularData(popularResponse)
             ?.let {
                 it.let {
-                    homeItemList.add(CategoryTitle(categoryTitle = "Popular"))
                     homeItemList.addAll(it)
                 }
             }
+
+        // Movie Card Saved Status
+        movieCardStatus()
 
         return DataFetchResult.success(HomePageAllRequestZipDTO(homeItemList))
     }
@@ -83,12 +89,26 @@ class HomeFragmentViewModel @Inject constructor(
         repository.getUpComingMovieData()
     }
 
-    fun getTopRatedMovieData(){
+    fun getTopRatedMovieData() {
         repository.getTopRatedMovieData()
     }
 
-    fun getPopularMovieData(pageIndex:Int){
+    fun getPopularMovieData() {
         repository.getPopularMovieData()
+    }
+
+    private fun movieCardStatus() {
+        val list = repository.getAllLocalMovieList
+        homeItemList.map {
+            when (it) {
+                is MovieCardDTO -> {
+                    val isSaved = list.any { localMovieCardDTO ->
+                        it.results?.id == localMovieCardDTO.results?.id
+                    }
+                    it.movieCardIsSaved = isSaved
+                }
+            }
+        }
     }
 
 }

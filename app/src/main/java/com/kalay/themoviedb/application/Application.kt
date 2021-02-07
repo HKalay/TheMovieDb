@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import dagger.android.support.DaggerApplication
 
-class Application : DaggerApplication() {
+open class Application : DaggerApplication() {
 
     private val applicationInjector =
         DaggerApplicationComponent
@@ -19,6 +19,5 @@ class Application : DaggerApplication() {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
-
 }
 

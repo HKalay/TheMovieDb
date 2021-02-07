@@ -3,6 +3,7 @@ package com.kalay.themoviedb.ui.pages.home.fragment
 import com.kalay.component.ui.slider.SliderDTO
 import com.kalay.component.ui.slider.SliderListDTO
 import com.kalay.component.ui.carousel.MovieCarouselDTO
+import com.kalay.component.ui.categorytitle.CategoryTitle
 import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.extensions.addTo
 import com.kalay.core.networking.DataFetchResult
@@ -16,9 +17,9 @@ class HomeFragmentGetData(
 ) {
 
     // SLIDER DATA
-    fun getSliderData(item: DataFetchResult<HomePageResponse>?): DisplayItem? {
+    fun getSliderData(item: DataFetchResult<HomePageResponse>?): MutableList<DisplayItem>? {
         val sliderList = arrayListOf<SliderDTO>()
-        var sliderListDTO: SliderListDTO? = null
+        val sliderListDTO = arrayListOf<DisplayItem>()
 
         when (item) {
             is DataFetchResult.Success -> {
@@ -38,7 +39,8 @@ class HomeFragmentGetData(
         }
 
         if (sliderList.size != 0) {
-            sliderListDTO = SliderListDTO(sliderList = sliderList)
+            sliderListDTO.add(CategoryTitle(categoryTitle = "Upcoming"))
+            sliderListDTO.add(SliderListDTO(sliderList = sliderList))
         }
         return sliderListDTO
     }
@@ -68,12 +70,13 @@ class HomeFragmentGetData(
     }
 
     // POPULAR DATA
-    fun getTPopularData(item: DataFetchResult<HomePageResponse>?): MutableList<DisplayItem>? {
+    fun getPopularData(item: DataFetchResult<HomePageResponse>?): MutableList<DisplayItem>? {
         val popularList = arrayListOf<DisplayItem>()
 
         when (item) {
             is DataFetchResult.Success -> {
                 item.data.results.let { _resultsList ->
+                    popularList.add(CategoryTitle(categoryTitle = "Popular"))
                     Observable.fromIterable(_resultsList).subscribe { _results ->
                         popularList.add(
                             MovieCardDTO(

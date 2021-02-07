@@ -1,5 +1,6 @@
 package com.kalay.core.ui.recyclerview
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,7 @@ class RecyclerViewAdapter constructor(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), DiffAdapter, SelectionAdapter, CoroutineScope {
 
     var itemClickListener: ((item: DisplayItem, position: Int) -> Unit)? = null
+    var itemViewClickListener: ((view: View, item: DisplayItem, position: Int) -> Unit)? = null
     var itemLongClickListener: ((item: DisplayItem, position: Int) -> Boolean)? = null
 
     override var coroutineContext: CoroutineContext = Dispatchers.Main
@@ -26,6 +28,7 @@ class RecyclerViewAdapter constructor(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         viewBinderFactoryMap[items[position].type]?.bind(holder, items[position])
         (holder as ViewHolder<DisplayItem>).itemClickListener = itemClickListener
+        (holder as ViewHolder<DisplayItem>).itemViewClickListener = itemViewClickListener
         (holder as ViewHolder<DisplayItem>).itemLongClickListener = itemLongClickListener
     }
 

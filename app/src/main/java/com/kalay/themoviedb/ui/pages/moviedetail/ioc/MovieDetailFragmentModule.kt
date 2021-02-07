@@ -3,11 +3,14 @@ package com.kalay.themoviedb.ui.pages.moviedetail.ioc
 import androidx.fragment.app.Fragment
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.Scheduler
+import com.kalay.data.database.dao.MovieCardDBDao
 import com.kalay.data.request.IMovieDetailPageApi
 import com.kalay.themoviedb.ioc.keys.FragmentViewModelKey
 import com.kalay.themoviedb.ui.base.fragment.BaseViewModelFragmentModule
 import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
+import com.kalay.themoviedb.ui.pages.home.fragment.repository.HomeFragmentLocalData
 import com.kalay.themoviedb.ui.pages.moviedetail.MovieDetailFragment
+import com.kalay.themoviedb.ui.pages.moviedetail.repository.MovieDetailFragmentLocalData
 import com.kalay.themoviedb.ui.pages.moviedetail.repository.MovieDetailFragmentRemoteData
 import com.kalay.themoviedb.ui.pages.moviedetail.repository.MovieDetailFragmentRepository
 import com.kalay.themoviedb.ui.pages.moviedetail.viewmodel.MovieDetailFragmentViewModel
@@ -44,13 +47,23 @@ abstract class MovieDetailFragmentModule {
         @Provides
         @FragmentScope
         @JvmStatic
+        fun movieDetailFragmentLocalData(
+            movieCardDao: MovieCardDBDao
+        ) =
+            MovieDetailFragmentLocalData(movieCardDao)
+
+        @Provides
+        @FragmentScope
+        @JvmStatic
         fun movieDetailFragmentRepository(
             remote: MovieDetailFragmentRemoteData,
+            local: MovieDetailFragmentLocalData,
             scheduler: Scheduler,
             compositeDisposable: CompositeDisposable
         ) =
             MovieDetailFragmentRepository(
                 remote,
+                local,
                 scheduler,
                 compositeDisposable
             )

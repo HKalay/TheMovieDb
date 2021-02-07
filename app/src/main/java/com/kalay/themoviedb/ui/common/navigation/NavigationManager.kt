@@ -7,6 +7,7 @@ import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.enums.PageType
 import com.kalay.core.enums.ParcelableData
 import com.kalay.core.ui.recyclerview.DisplayItem
+import com.kalay.data.response.dataclasses.Results
 import com.kalay.themoviedb.ui.pages.detail.activity.DetailActivity
 
 class NavigationManager {
@@ -18,10 +19,12 @@ class NavigationManager {
 
         when (model) {
             is MovieCardDTO -> {
-                openDetailActivity(context = context,movieId=model.results?.id)
+                openDetailActivity(context = context, results = model.results)
+
             }
             is MovieCarouselDTO -> {
-                openDetailActivity(context = context,movieId=model.results?.id)
+                openDetailActivity(context = context, results = model.results)
+
             }
         }
     }
@@ -29,14 +32,14 @@ class NavigationManager {
 
     private fun openDetailActivity(
         context: Context?,
-        movieId:Int?
+        results: Results?
     ) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(
             ParcelableData.PAGE_TYPE.toString(),
             PageType.Other.toString()
         )
-        intent.putExtra(ParcelableData.MOVIE_ID.toString(), movieId)
+        intent.putExtra(ParcelableData.MOVIE.toString(), results)
         context?.startActivity(intent)
     }
 }

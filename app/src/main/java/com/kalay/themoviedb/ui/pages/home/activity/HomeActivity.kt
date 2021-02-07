@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.kalay.core.extensions.gone
 import com.kalay.core.extensions.isNetworkConnected
-import com.kalay.core.extensions.visibile
+import com.kalay.core.extensions.visible
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.activity.BaseActivity
 import com.kalay.themoviedb.ui.pages.favorites.FavoritesFragment
@@ -52,7 +52,7 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
         homeTabContainer.gone()
         searchTabContainer.gone()
         favoriteTabContainer.gone()
-        container?.visibile()
+        container?.visible()
     }
 
     private fun selectTab(itemId: Int) {
@@ -82,14 +82,10 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
                 invisibleTabContainerExcept(searchTabContainer)
             }
             R.id.favorites -> {
-                val ff: FavoritesFragment? =
-                    supportFragmentManager.findFragmentByTag(R.id.favoriteTabContainer.toString()) as FavoritesFragment?
-                if (ff == null) {
-                    navigateToFragment(
-                        FavoritesFragment(),
-                        R.id.favoriteTabContainer
-                    )
-                }
+                navigateToFragment(
+                    FavoritesFragment(),
+                    R.id.favoriteTabContainer
+                )
                 invisibleTabContainerExcept(favoriteTabContainer)
             }
         }
@@ -105,12 +101,12 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
         }
     }
 
-    private fun networkControl(){
+    private fun networkControl() {
         if (isNetworkConnected()) {
             selectTab(bottomNavigationPosition)
             llNoInternet.gone()
         } else {
-            llNoInternet.visibile()
+            llNoInternet.visible()
             invisibleTabContainerExcept(null)
         }
     }

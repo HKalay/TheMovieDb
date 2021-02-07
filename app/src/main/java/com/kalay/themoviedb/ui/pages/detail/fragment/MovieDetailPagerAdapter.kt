@@ -17,7 +17,7 @@ class MovieDetailPagerAdapter(
         val results = sliderListDTO.sliderList?.get(position)?.results
         val bundle = Bundle()
 
-        bundle.putInt(ParcelableData.MOVIE_ID.toString(), results?.id!!)
+        bundle.putParcelable(ParcelableData.MOVIE.toString(), results)
 
         return  MovieDetailFragment.newInstance(bundle)
     }

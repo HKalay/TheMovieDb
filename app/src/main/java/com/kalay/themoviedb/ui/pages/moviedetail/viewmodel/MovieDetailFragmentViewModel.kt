@@ -2,6 +2,7 @@ package com.kalay.themoviedb.ui.pages.moviedetail.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.kalay.core.extensions.toLiveData
 import com.kalay.core.extensions.toLiveEvent
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.DataFetchResult
@@ -24,6 +25,9 @@ class MovieDetailFragmentViewModel @Inject constructor(
         MovieDetailFragmentGetData(
             compositeDisposable
         )
+
+    val getLocalMovieDataResult = repository.getAllLocalMovieWithIdDataResult.toLiveData(disposables)
+
 
     val movieDetailPageDataResult: LiveData<DataFetchResult<*>> =
         Transformations.map(repository.movieDetailPageDataResult.toLiveEvent(disposables)) { result ->
@@ -62,8 +66,8 @@ class MovieDetailFragmentViewModel @Inject constructor(
         return DataFetchResult.success(movieDetailItemList)
     }
 
-    fun getMovieDetailData(movieId: Int) {
-        repository.getMovieDetailPageData(movieId)
+    fun getMovieDetailData(movieId: Int?) {
+        movieId?.let { repository.getMovieDetailPageData(it) }
     }
 
 

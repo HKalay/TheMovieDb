@@ -2,5 +2,9 @@ package com.kalay.core.enums
 
 enum class PageType {
     Slider,
-    Other
+    Other,
+    HomeFragment,
+    MovieDetailFragment,
+    SearchFragment,
+    FavoritesFragment
 }

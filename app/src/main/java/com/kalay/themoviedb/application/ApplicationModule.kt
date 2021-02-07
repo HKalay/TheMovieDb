@@ -9,7 +9,7 @@ import com.kalay.themoviedb.ioc.builder.ActivityBuilderModule
 import com.kalay.core.ioc.modules.NetworkModule
 import com.kalay.core.ioc.modules.SystemServiceModule
 import com.kalay.core.ioc.qualifiers.ApplicationContext
-import com.kalay.data.database.TheMovieLocalDbModule
+import com.kalay.themoviedb.ioc.modules.TheMovieLocalDbModule
 import dagger.Binds
 import dagger.Module
 import dagger.android.support.AndroidSupportInjectionModule

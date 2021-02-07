@@ -1,9 +1,11 @@
 package com.kalay.themoviedb.ui.pages.search.repository
 
+import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.core.extensions.*
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.DataFetchResult
 import com.kalay.core.networking.Scheduler
+import com.kalay.data.database.model.MovieCardDbDTO
 import com.kalay.data.response.SearchPageResponse
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
@@ -12,6 +14,7 @@ import timber.log.Timber
 @FragmentScope
 class SearchFragmentRepository(
 	private val remote: SearchFragmentContract.Remote,
+	private val local: SearchFragmentContract.Local,
 	private val scheduler: Scheduler,
 	private val compositeDisposable: CompositeDisposable
 ) : SearchFragmentContract.Repository {
@@ -31,6 +34,29 @@ class SearchFragmentRepository(
 				{ error ->
 					handleError(searchMovieDataResult, error)
 				})
+			.addTo(compositeDisposable)
+	}
+
+	override fun insertLocalMovie(movieCardDTO: MovieCardDTO) {
+		return local.insertLocalMovie(movieCardDTO)
+	}
+
+	override fun deleteLocalMovie(movieCardDTO: MovieCardDTO) {
+		return local.deleteLocalMovie(movieCardDTO)
+	}
+
+	var getAllLocalMovieList = mutableListOf<MovieCardDbDTO>()
+	override fun getAllLocalMovie() {
+		local.getAllLocalMovie()
+			.performOnBackOutOnMain(scheduler)
+			.subscribe(
+				{
+					getAllLocalMovieList.addAll(it)
+				}
+				, {
+
+				}
+			)
 			.addTo(compositeDisposable)
 	}
 

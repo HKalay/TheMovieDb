@@ -1,129 +1,70 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_centerInParent="true"
-      android:id="@+id/rvMovieDetail"/>
-
-   <ProgressBar
-       android:id="@+id/pbMovieDetailPage"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_centerInParent="true"/>
-
-   <!-- <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/material_16dp">
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btnNewsDetailBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/whiteAndBlackColor"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_back" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvNewsDetailTitle"
-            style="@style/merri_weather_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_margin="@dimen/material_8dp"
-            android:layout_marginStart="@dimen/material_8dp"
-            android:layout_toStartOf="@+id/llNewsDetailClickEvent"
-            android:layout_toEndOf="@+id/btnNewsDetailBack"
-            android:animateLayoutChanges="true"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="@dimen/material_15sp"
-            android:visibility="gone"
-            tools:text="@string/title" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/llNewsDetailClickEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnFontSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/whiteAndBlackColor"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_font_size" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/material_16dp"
-                android:layout_marginRight="@dimen/material_16dp"
-                android:background="?attr/whiteAndBlackColor"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_save_two" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnShare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/whiteAndBlackColor"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_share_two" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </RelativeLayout>
-
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-        android:id="@+id/epVideo"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:visibility="gone" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvItemTitle"
-        style="@style/merri_weather_regular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/material_16dp"
-        android:layout_marginRight="@dimen/material_16dp"
-        android:lineSpacingMultiplier="1.25"
-        android:textColor="?attr/blackAndWhiteColor"
-        android:textSize="@dimen/material_24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/material_4dp"
-        android:visibility="gone"
-        tools:text="@string/news_title" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNewsDetailList"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back" />
 
-    <WebView
-        android:id="@+id/webView"
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgSaveDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/material_16dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_save" />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/whiteAndBlackColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/black"/>
+ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMovieDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ProgressBar
+        android:id="@+id/pbMovieDetailPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />-->
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

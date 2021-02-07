@@ -6,4 +6,5 @@
     <string name="search_movie">Search Movie</string>
     <string name="no_results">No results match your search criteria</string>
     <string name="no_internet">No Internet</string>
+    <string name="no_content">No content added to favorites</string>
 </resources>

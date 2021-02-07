@@ -1,12 +1,14 @@
-package com.kalay.data.database
+package com.kalay.themoviedb.ioc.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.kalay.data.database.ArrayConverter
 import com.kalay.data.database.dao.MovieCardDBDao
+import com.kalay.data.database.model.MovieCardDbDTO
 
 @Database(
-    entities = [MovieCardDBDao::class],
+    entities = [MovieCardDbDTO::class],
     version = 1,
     exportSchema = false
 )

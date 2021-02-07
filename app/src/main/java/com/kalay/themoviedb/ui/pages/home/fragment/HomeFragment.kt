@@ -6,15 +6,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.kalay.component.TheMovieRecyclerviewAdapter
+import com.kalay.component.ui.moviecard.MovieCardDTO
 import com.kalay.component.ui.slider.SliderListDTO
 import com.kalay.core.enums.PageType
 import com.kalay.core.enums.ParcelableData
 import com.kalay.core.extensions.*
 import com.kalay.core.networking.DataFetchResult
+import com.kalay.core.ui.recyclerview.DisplayItem
 import com.kalay.data.zipdto.HomePageAllRequestZipDTO
 import com.kalay.themoviedb.R
 import com.kalay.themoviedb.ui.base.fragment.BaseDataFetchFragment
 import com.kalay.themoviedb.ui.common.navigation.NavigationManager
+import com.kalay.themoviedb.ui.databasehelper.SaveLocalDbHelper
 import com.kalay.themoviedb.ui.pages.detail.activity.DetailActivity
 import com.kalay.themoviedb.ui.pages.home.fragment.viewmodel.HomeFragmentViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -30,6 +33,7 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
     @Inject
     lateinit var adapterPageList: TheMovieRecyclerviewAdapter
 
+    private var saveLocalDbHelper: SaveLocalDbHelper? = null
 
     override val viewModelClass = HomeFragmentViewModel::class.java
 
@@ -53,6 +57,13 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         compositeDisposable = CompositeDisposable()
+        saveLocalDbHelper = SaveLocalDbHelper(
+            repositoryHomeFragment = viewModel.repository,
+            requireContext = requireContext(),
+            compositeDisposable = compositeDisposable,
+            pageType = PageType.HomeFragment.toString(),
+            activity = requireActivity()
+        )
 
         bindHomePage()
         adapterPageListClick()
@@ -61,10 +72,13 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
     private fun getHomePageDate() {
         viewModel.getUpComingMovieData()
         viewModel.getTopRatedMovieData()
-        viewModel.getPopularMovieData(1)
+        viewModel.getPopularMovieData()
     }
 
     private fun bindHomePage() {
+
+        saveLocalDbHelper?.getAllLocalMovieCardData()
+
         rvHomePage.setup(
             adapter = adapterPageList.getAdapter()
         )
@@ -81,10 +95,10 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
                             adapterPageList.getAdapter().updateAllItems(homeData)
                         }
                         pbHomePage.gone()
-                        rvHomePage.visibile()
+                        rvHomePage.visible()
                     }
                     is DataFetchResult.Progress -> {
-                        pbHomePage.visibile()
+                        pbHomePage.visible()
                     }
                     is DataFetchResult.Failure -> {
                         pbHomePage.gone()
@@ -97,6 +111,21 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
     }
 
     private fun adapterPageListClick() {
+
+       adapterPageList.getAdapter().itemViewClickListener =
+            { view: View, item: DisplayItem, _: Int ->
+                when (item) {
+                    is MovieCardDTO -> {
+                        if (view.id == com.kalay.component.R.id.rootViewItemMovieCard) {
+                            NavigationManager().navigate(model = item, context = requireContext())
+                        }
+                        if (view.id == com.kalay.component.R.id.imgItemMovieCardSave) {
+                            movieCardClick(item)
+                        }
+                    }
+                }
+            }
+
         adapterPageList.getAdapter().itemClickListener = { item, position ->
             when (item) {
                 is SliderListDTO -> {
@@ -113,6 +142,14 @@ class HomeFragment : BaseDataFetchFragment<HomeFragmentViewModel>() {
                     NavigationManager().navigate(model = item, context = requireContext())
                 }
             }
+        }
+    }
+
+    private fun movieCardClick(movieCardDTO: MovieCardDTO) {
+        if (movieCardDTO.movieCardIsSaved) {
+            saveLocalDbHelper?.deleteLocalMovieCard(movieCardDTO)
+        } else {
+            saveLocalDbHelper?.insertMovieCardData(movieCardDTO)
         }
     }
 }

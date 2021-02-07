@@ -3,12 +3,12 @@ package com.kalay.themoviedb.ui.pages.favorites.ioc
 import androidx.fragment.app.Fragment
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.Scheduler
-import com.kalay.data.request.IHomePageApi
+import com.kalay.data.database.dao.MovieCardDBDao
 import com.kalay.themoviedb.ioc.keys.FragmentViewModelKey
 import com.kalay.themoviedb.ui.base.fragment.BaseViewModelFragmentModule
 import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
 import com.kalay.themoviedb.ui.pages.favorites.FavoritesFragment
-import com.kalay.themoviedb.ui.pages.favorites.repository.FavoritesFragmentRemoteData
+import com.kalay.themoviedb.ui.pages.favorites.repository.FavoritesFragmentLocalData
 import com.kalay.themoviedb.ui.pages.favorites.repository.FavoritesFragmentRepository
 import com.kalay.themoviedb.ui.pages.favorites.viewmodel.FavoritesFragmentViewModel
 import dagger.Binds
@@ -33,19 +33,22 @@ abstract class FavoritesFragmentModule {
     @Module
     companion object {
 
+
         @Provides
         @FragmentScope
         @JvmStatic
-        fun favoritesFragmentRemoteData(apiInterface: IHomePageApi) =
-            FavoritesFragmentRemoteData(apiInterface)
+        fun favoritesFragmentLocalData(
+            movieCardDao: MovieCardDBDao
+        ) =
+            FavoritesFragmentLocalData(movieCardDao)
 
         @Provides
         @FragmentScope
         @JvmStatic
         fun favoritesFragmentRepository(
-            remote: FavoritesFragmentRemoteData,
+            local:FavoritesFragmentLocalData,
             scheduler: Scheduler,
             compositeDisposable: CompositeDisposable
-        ) = FavoritesFragmentRepository(remote, scheduler, compositeDisposable)
+        ) = FavoritesFragmentRepository(local, scheduler, compositeDisposable)
     }
 }

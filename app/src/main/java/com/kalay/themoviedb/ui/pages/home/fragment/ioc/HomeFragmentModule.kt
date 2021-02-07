@@ -3,6 +3,7 @@ package com.kalay.themoviedb.ui.pages.home.fragment.ioc
 import androidx.fragment.app.Fragment
 import com.kalay.core.ioc.scopes.FragmentScope
 import com.kalay.core.networking.Scheduler
+import com.kalay.data.database.dao.MovieCardDBDao
 import com.kalay.data.request.IHomePageApi
 import com.kalay.themoviedb.ioc.keys.FragmentViewModelKey
 import com.kalay.themoviedb.ui.pages.home.fragment.repository.HomeFragmentRemoteData
@@ -11,6 +12,7 @@ import com.kalay.themoviedb.ui.pages.home.fragment.viewmodel.HomeFragmentViewMod
 import com.kalay.themoviedb.ui.base.fragment.BaseViewModelFragmentModule
 import com.kalay.themoviedb.ui.base.viewmodel.BaseFragmentViewModel
 import com.kalay.themoviedb.ui.pages.home.fragment.HomeFragment
+import com.kalay.themoviedb.ui.pages.home.fragment.repository.HomeFragmentLocalData
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -42,10 +44,19 @@ abstract class HomeFragmentModule {
         @Provides
         @FragmentScope
         @JvmStatic
+        fun homeFragmentLocalData(
+            movieCardDao: MovieCardDBDao
+        ) =
+            HomeFragmentLocalData(movieCardDao)
+
+        @Provides
+        @FragmentScope
+        @JvmStatic
         fun homeFragmentRepository(
             remote: HomeFragmentRemoteData,
+            local: HomeFragmentLocalData,
             scheduler: Scheduler,
             compositeDisposable: CompositeDisposable
-        ) = HomeFragmentRepository(remote, scheduler, compositeDisposable)
+        ) = HomeFragmentRepository(remote,local, scheduler, compositeDisposable)
     }
 }
