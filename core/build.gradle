@@ -42,14 +42,23 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api deps.ktx
+    //Ktx
+    api deps.ktx.ktx
+
+    //Kotlin
     api deps.kotlin.stdlib
+    api deps.kotlin.kotlinAndroidExtensionsRuntime
+    api deps.kotlin.kotlinCoroutines
+
+    //Support
     api deps.support.appCompat
     api deps.support.recyclerView
     api deps.support.cardView
     api deps.support.support
     api deps.support.designSupport
+    api deps.support.multidex
 
+    //Android
     api deps.android.constraintLayout
     api deps.android.lifecycleExt
     api deps.android.lifecycleRx
@@ -58,28 +67,29 @@ dependencies {
     api deps.android.roomRx
     api deps.android.navigationFragment
     api deps.android.navigationUI
-    api deps.kotlin.kotlinAndroidExtensionsRuntime
     api deps.android.lifecycleViewmodelKtx
     api deps.android.navigationFragment
     api deps.android.navigationUI
+    kapt deps.android.roomCompiler
+    kapt deps.android.lifecycleCompiler
+    kapt deps.android.googlePlayServices
 
-    api deps.pageindicatorview
-
+    //Reactivex
     api deps.reactivex.rxJava
     api deps.reactivex.rxAndroid
     api deps.reactivex.rxRelay
     api deps.reactivex.rxKotlin
     api deps.reactivex.rxBinding
+    api deps.reactivex.rxPrefs
 
+    //Google
     api deps.google.dagger
     api deps.google.daggerSupport
-
     api deps.google.gson
+    kapt deps.google.daggerProcessor
+    kapt deps.google.daggerAndroidProcessor
 
-    api deps.support.multidex
-
-    api deps.kotlin.kotlinCoroutines
-
+    //Square
     api deps.square.picasso
     api deps.square.okhttpDownloader
     api deps.square.retrofit
@@ -90,24 +100,33 @@ dependencies {
     api deps.square.timber
     api deps.square.urlconnection
     api deps.square.circleimageview
-    api deps.state.core
 
+    //LoopingLayoutManager
+    api deps.loopinglayoutmanager.loopinglayout
+    api deps.loopinglayoutmanager.loopingViewPager
+    api deps.loopinglayoutmanager.loopingLayoutViewPagerIndicator
+
+    //State
+    api deps.state.core
+    kapt deps.state.processor
+
+    //Additional
     api deps.additional.jodaTime
 
+    //BumpTech-Glide
+    api deps.bumptech.glide
+
+    //PageIndicatorView
+    api deps.pageindicatorview.pageindicatorview
+
+    //Test
     androidTestImplementation deps.test.junit
     androidTestImplementation deps.test.mockitoKotlin
     androidTestImplementation deps.test.robolectric
     androidTestImplementation deps.test.atslRunner
     androidTestImplementation deps.test.espresso
-
     androidTestImplementation deps.test.junit
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
-
-    kapt deps.android.roomCompiler
-    kapt deps.android.lifecycleCompiler
-    kapt deps.google.daggerProcessor
-    kapt deps.google.daggerAndroidProcessor
-    kapt deps.state.processor
 }
 
