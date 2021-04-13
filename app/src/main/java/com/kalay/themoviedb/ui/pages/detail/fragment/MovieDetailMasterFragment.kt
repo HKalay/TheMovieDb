@@ -15,11 +15,11 @@ class MovieDetailMasterFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sliderDTO = arguments?.getParcelable(ParcelableData.SLIDER_LIST.toString()) as SliderListDTO
+        val sliderDTO = arguments?.getParcelable<SliderListDTO>(ParcelableData.SLIDER_LIST.toString())
         val position = arguments?.getInt(ParcelableData.SLIDER_POSITION.toString())
 
         viewpagerMaster?.apply {
-            adapter = MovieDetailPagerAdapter(childFragmentManager, sliderDTO)
+            adapter = sliderDTO?.let { MovieDetailPagerAdapter(childFragmentManager, it) }
             currentItem = position ?: 0
         }
     }

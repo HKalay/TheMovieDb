@@ -99,11 +99,10 @@ abstract class BaseActivity<VM : BaseActivityViewModel> : AppCompatActivity(),
         }
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        if (savedInstanceState != null)
-            viewModel.handleRestoreInstanceState(savedInstanceState)
+        viewModel.handleRestoreInstanceState(savedInstanceState)
     }
 
     override fun onStart() {

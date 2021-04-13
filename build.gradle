@@ -8,14 +8,14 @@ buildscript {
             'targetCompat'      : JavaVersion.VERSION_1_8,
             'kotlin'            : '1.3.21',
             'minSdk'            : 21,
-            'compileSdk'        : 28,
+            'compileSdk'        : 29,
             'targetSdk'         : 29,
 
             //Android Support
             'appCompat'         : '1.1.0',
             'supportVer'        : '1.0.0',
-            'buildTools'        : '28.0.3',
-            'androidPlugin'     : '3.6.1',
+            'buildTools'        : '30.0.2',
+            'androidPlugin'     : '4.1.3',
             'JatpacknaVersion'  : "2.3.0-alpha03",
             'lifecycle'         : '2.0.0',
             'constraintLayout'  : '1.1.3',

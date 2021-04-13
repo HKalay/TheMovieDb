@@ -35,7 +35,7 @@ class MovieDetailFragment : BaseDataFetchFragment<MovieDetailFragmentViewModel>(
         @JvmStatic
         fun newInstance(bundle: Bundle?) = MovieDetailFragment().apply {
             bundle?.let {
-                results = bundle.getParcelable(ParcelableData.MOVIE.toString()) as Results
+                results = bundle.getParcelable(ParcelableData.MOVIE.toString())
             }
         }
     }
