@@ -5,8 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
         minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
