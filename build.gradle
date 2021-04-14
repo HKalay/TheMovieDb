@@ -23,11 +23,11 @@ buildscript {
             'ktx'               : '1.6.0-alpha01',
 
             //Rx
-            'rxJava'            : '2.2.8',
+            'rxJava'            : '2.2.21',
             'rxAndroid'         : '2.1.1',
             'retrofitRxAdapter' : '1.0.0',
             'rxBinding'         : '3.1.0',
-            'rxKotlin'          : '2.3.0',
+            'rxKotlin'          : '2.4.0',
             'rxRelay'           : '2.1.1',
             'rxPrefs'           : '2.0.3',
 
@@ -51,7 +51,7 @@ buildscript {
             'testCore'          : '1.0.0',
             'robolectric'       : '4.5.1',
             'espresso'          : '3.0.2',
-            'junit'             : '4.12',
+            'junit'             : '4.13.2',
             'mockitoKotlin'     : '1.6.0',
             'junitJupiter'      : '5.7.1',
             'roomTesting'       : '1.0.0',
@@ -65,7 +65,7 @@ buildscript {
             'facebookSdk'       : '4.41.0',
             'timber'            : '4.7.1',
             'multidex'          : '2.0.1',
-            'jodaTime'          : "2.9.9",
+            'jodaTime'          : '2.10.10',
             'androidState'      : '1.4.1',
             'pageindicatorview' : '1.0.3',
             'circleimageview'   : '3.1.0',
