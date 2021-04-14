@@ -6,56 +6,57 @@ buildscript {
     ext.versions = [
             'sourceCompat'      : JavaVersion.VERSION_1_8,
             'targetCompat'      : JavaVersion.VERSION_1_8,
-            'kotlin'            : '1.3.72',
+            'kotlin'            : '1.4.31',
             'minSdk'            : 21,
             'compileSdk'        : 29,
             'targetSdk'         : 29,
 
             //Android Support
-            'appCompat'         : '1.1.0',
+            'appCompat'         : '1.2.0',
             'supportVer'        : '1.0.0',
             'buildTools'        : '30.0.2',
             'androidPlugin'     : '4.1.3',
-            'JatpacknaVersion'  : "2.3.0-alpha03",
+            'JatpacknaVersion'  : '2.3.5',
             'lifecycle'         : '2.0.0',
-            'constraintLayout'  : '1.1.3',
-            'room'              : '2.0.0-alpha1',
-            'ktx'               : '1.1.0-alpha04',
+            'constraintLayout'  : '2.0.4',
+            'room'              : '2.3.0-rc01',
+            'ktx'               : '1.6.0-alpha01',
 
             //Rx
             'rxJava'            : '2.2.8',
             'rxAndroid'         : '2.1.1',
             'retrofitRxAdapter' : '1.0.0',
-            'rxBinding'         : '3.0.0-alpha2',
+            'rxBinding'         : '3.1.0',
             'rxKotlin'          : '2.3.0',
-            'rxRelay'           : '2.1.0',
+            'rxRelay'           : '2.1.1',
             'rxPrefs'           : '2.0.3',
 
             //Google
             'dagger'            : '2.22.1',
-            'gson'              : '2.8.5',
-            'retrofit'          : '2.3.0',
-            'okhttp'            : '3.14.0',
+            'gson'              : '2.8.6',
+            'retrofit'          : '2.9.0',
+            'okhttp'            : '5.0.0-alpha.2',
             'okhttpDownloader'  : '1.1.0',
             'gms'               : '4.2.0',
-            'picasso'           : '2.5.2',
-            'googlePlayServices': '4.3.3',
+            'picasso'           : '2.71828',
+            'googlePlayServices': '4.3.5',
             'firebase'          : '16.0.8',
             'firebaseAnalytics' : '17.2.2',
             'firebaseMessage'   : '17.5.0',
             'firebaseAppDist'   : '1.3.1',
-            'kotlinCoroutines'  : '1.3.1',
+            'kotlinCoroutines'  : '1.4.3-native-mt',
 
             //Test
             'mockito'           : '1.10.19',
             'testCore'          : '1.0.0',
-            'robolectric'       : '3.6.1',
+            'robolectric'       : '4.5.1',
             'espresso'          : '3.0.2',
             'junit'             : '4.12',
-            'mockitoKotlin'     : '1.5.0',
-            'junitJupiter'      : '5.2.0',
+            'mockitoKotlin'     : '1.6.0',
+            'junitJupiter'      : '5.7.1',
             'roomTesting'       : '1.0.0',
             'livedataTesting'   : '1.1.0',
+            'atsl'              : '1.0.2',
 
             //Tools
             'leakCanary'        : '1.6.2',
@@ -63,7 +64,7 @@ buildscript {
             'parceler'          : '1.1.10',
             'facebookSdk'       : '4.41.0',
             'timber'            : '4.7.1',
-            'multidex'          : '2.0.0',
+            'multidex'          : '2.0.1',
             'jodaTime'          : "2.9.9",
             'androidState'      : '1.4.1',
             'pageindicatorview' : '1.0.3',
@@ -73,7 +74,7 @@ buildscript {
             'glide'             : '4.12.0',
 
             //Looping Layout
-            'loopingLayout'             : '0.3.1',
+            'loopingLayout'             : '0.4.1',
             'loopingLayoutViewPager'             : '0.2.0',
             'loopingLayoutViewPagerIndicator'             : '4.1.2'
 

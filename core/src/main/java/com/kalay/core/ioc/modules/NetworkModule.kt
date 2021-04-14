@@ -49,7 +49,7 @@ class NetworkModule {
     @Singleton
     fun providesInterceptor(): Interceptor {
         return Interceptor { chain ->
-            val url = chain.request().url().newBuilder()
+            val url = chain.request().url.newBuilder()
                 .addQueryParameter(API_KEY_NAME, AppConstants.API_KEY)
                 .build()
             val request = chain.request()

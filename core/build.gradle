@@ -127,8 +127,6 @@ dependencies {
     androidTestImplementation deps.test.robolectric
     androidTestImplementation deps.test.atslRunner
     androidTestImplementation deps.test.espresso
-    androidTestImplementation deps.test.junit
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    androidTestImplementation deps.test.junitJupiter
 }
 

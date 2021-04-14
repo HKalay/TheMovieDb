@@ -4,8 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.kalay.core.constants.AppConstants
-import com.squareup.picasso.Picasso
 
 fun View.gone() {
     visibility = View.GONE
@@ -16,7 +16,7 @@ fun View.visible() {
 }
 
 fun ImageView.loadImage(url: String) {
-    Picasso.with(this.context)
+    Glide.with(this.context)
         .load(AppConstants.IMAGE_BASE_URL + AppConstants.IMAGE_W780 + url)
         .into(this)
 }
